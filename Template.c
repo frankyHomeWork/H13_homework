@@ -101,22 +101,12 @@ bool myCircularQueueDeQueue(MyCircularQueue* obj) {
     } else if (count > 1) {
         
         Node *current = obj->front;
-        Node *pre_current = NULL;
-    
-        while(current->next != NULL) {
-            pre_current = current;
-            current = current->next;
-        }
-        printf("in DeQueue / current: %d\n", current->data);
+        Node *next_current = current->next;
         
-        pre_current->next = NULL;
-        free(current);    
-        
-
-        obj->rear = pre_current;
+        obj->front = next_current;
+        free(current);
         obj->count--;
     }
-    printf("the last is %d\n", obj->rear->data);
     
     return true;
 }
